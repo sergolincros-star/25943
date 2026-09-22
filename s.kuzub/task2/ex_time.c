@@ -23,6 +23,6 @@ int main()
          sp->tm_year % 100,
          sp->tm_hour,
          sp->tm_min,
-         tzname[sp->tm_isdst]);
+         tzname[0]);
   exit(0);
 }
