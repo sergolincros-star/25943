@@ -67,27 +67,29 @@ int main(int argc, char *argv[]) {
 
     case 'u': {
       struct rlimit rl;
-      if (getrlimit(RLIMIT_NPROC, &rl) == -1) {
-        perror("Ошибка в getrlimit(RLIMIT_NPROC)");
+      /* На Solaris используем системную константу RLIMIT_MAXPROC */
+      if (getrlimit(RLIMIT_MAXPROC, &rl) == -1) {
+        perror("Ошибка в getrlimit(RLIMIT_MAXPROC)");
       } else {
         if (rl.rlim_cur == RLIM_INFINITY)
-          printf("ulimit: unlimited\n");
+          printf("Макс. процессов: unlimited\n");
         else
-          printf("ulimit: %llu байт\n", (unsigned long long)rl.rlim_cur);
+          printf("Макс. процессов: %llu\n", (unsigned long long)rl.rlim_cur);
       }
       break;
     }
 
     case 'U': {
       struct rlimit rl;
-      if (getrlimit(RLIMIT_NPROC, &rl) == -1) {
-        perror("Ошибка в getrlimit(RLIMIT_NPROC");
+      /* На Solaris используем системную константу RLIMIT_MAXPROC */
+      if (getrlimit(RLIMIT_MAXPROC, &rl) == -1) {
+        perror("Ошибка в getrlimit(RLIMIT_MAXPROC)");
       } else {
         rl.rlim_cur = (rlim_t)atol(arg);
-        if (setrlimit(RLIMIT_NPROC, &rl) == -1) {
-          perror("Ошибка в setrlimit(RLIMIT_NPROC)");
+        if (setrlimit(RLIMIT_MAXPROC, &rl) == -1) {
+          perror("Ошибка в setrlimit(RLIMIT_MAXPROC)");
         } else {
-          printf("Новый ulimit установлен: %llu байт\n",
+          printf("Новый лимит процессов установлен: %llu\n",
                  (unsigned long long)rl.rlim_cur);
         }
       }
