@@ -67,8 +67,8 @@ int main(int argc, char *argv[]) {
 
     case 'u': {
       struct rlimit rl;
-      if (getrlimit(RLIMIT_FSIZE, &rl) == -1) {
-        perror("Ошибка в getrlimit(RLIMIT_FSIZE)");
+      if (getrlimit(RLIMIT_NPROC, &rl) == -1) {
+        perror("Ошибка в getrlimit(RLIMIT_NPROC)");
       } else {
         if (rl.rlim_cur == RLIM_INFINITY)
           printf("ulimit: unlimited\n");
@@ -80,12 +80,12 @@ int main(int argc, char *argv[]) {
 
     case 'U': {
       struct rlimit rl;
-      if (getrlimit(RLIMIT_FSIZE, &rl) == -1) {
-        perror("Ошибка в getrlimit(RLIMIT_FSIZE)");
+      if (getrlimit(RLIMIT_NPROC, &rl) == -1) {
+        perror("Ошибка в getrlimit(RLIMIT_NPROC");
       } else {
         rl.rlim_cur = (rlim_t)atol(arg);
-        if (setrlimit(RLIMIT_FSIZE, &rl) == -1) {
-          perror("Ошибка в setrlimit(RLIMIT_FSIZE)");
+        if (setrlimit(RLIMIT_NPROC, &rl) == -1) {
+          perror("Ошибка в setrlimit(RLIMIT_NPROC)");
         } else {
           printf("Новый ulimit установлен: %llu байт\n",
                  (unsigned long long)rl.rlim_cur);
