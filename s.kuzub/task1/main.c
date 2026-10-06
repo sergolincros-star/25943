@@ -68,8 +68,8 @@ int main(int argc, char *argv[]) {
     case 'u': {
       struct rlimit rl;
       /* На Solaris используем системную константу RLIMIT_MAXPROC */
-      if (getrlimit(RLIMIT_MAXPROC, &rl) == -1) {
-        perror("Ошибка в getrlimit(RLIMIT_MAXPROC)");
+      if (getrlimit(RLIMIT_NOFILE, &rl) == -1) {
+        perror("Ошибка в getrlimit(RLIMIT_NOFILE)");
       } else {
         if (rl.rlim_cur == RLIM_INFINITY)
           printf("Макс. процессов: unlimited\n");
@@ -82,12 +82,12 @@ int main(int argc, char *argv[]) {
     case 'U': {
       struct rlimit rl;
       /* На Solaris используем системную константу RLIMIT_MAXPROC */
-      if (getrlimit(RLIMIT_MAXPROC, &rl) == -1) {
-        perror("Ошибка в getrlimit(RLIMIT_MAXPROC)");
+      if (getrlimit(RLIMIT_NOFILE, &rl) == -1) {
+        perror("Ошибка в getrlimit(RLIMIT_NOFILE)");
       } else {
         rl.rlim_cur = (rlim_t)atol(arg);
-        if (setrlimit(RLIMIT_MAXPROC, &rl) == -1) {
-          perror("Ошибка в setrlimit(RLIMIT_MAXPROC)");
+        if (setrlimit(RLIMIT_NOFILE, &rl) == -1) {
+          perror("Ошибка в setrlimit(RLIMIT_NOFILE)");
         } else {
           printf("Новый лимит процессов установлен: %llu\n",
                  (unsigned long long)rl.rlim_cur);
