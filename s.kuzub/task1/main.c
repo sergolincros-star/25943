@@ -8,7 +8,6 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-
 extern char **environ;
 
 struct Option {
