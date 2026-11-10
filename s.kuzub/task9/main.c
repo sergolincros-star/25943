@@ -6,7 +6,7 @@
 #include <unistd.h>
 
 /* Часть 2: последняя строка родителя печатается только
-   после завершения потомка (waitpid). */
+осле завершения потомка (waitpid). */
 int main(int argc, char *argv[]) {
   if (argc < 2) {
     fprintf(stderr, "Использование: %s <длинный_файл>\n", argv[0]);

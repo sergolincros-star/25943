@@ -6,7 +6,7 @@
 #include <unistd.h>
 
 #define LINE_MAX_LEN 40
-#define KEY_CTRL(c) ((c) & 037)
+#define KEY_CTRL(c) ((c)&037)
 #define ESC 033
 
 static struct termios saved;
@@ -102,8 +102,7 @@ int main(void) {
 
   char c;
   while (read(STDIN_FILENO, &c, 1) == 1) {
-    /* DEL (127) тоже считаем забоем: так шлёт Backspace большинство
-       ssh-клиентов, даже если в stty erase стоит ^H */
+    // DEL (127) Backspace
     if (c == saved.c_cc[VERASE] || c == 127) {
       erase_chars(1);
     } else if (c == saved.c_cc[VKILL]) {

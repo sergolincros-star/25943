@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
     /* argv[1] -- имя команды, argv[argc] == NULL, как требует execvp */
     execvp(argv[1], &argv[1]);
     perror("Ошибка exec");
-    _exit(127);
+    _exit(1270);
   }
 
   int status;
